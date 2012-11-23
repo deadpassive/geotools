@@ -21,6 +21,7 @@ import java.util.Map;
 import net.opengis.ows11.AllowedValuesType;
 import net.opengis.ows11.AnyValueType;
 import net.opengis.ows11.Ows11Factory;
+import net.opengis.ows11.WGS84BoundingBoxType;
 
 import org.geotools.ows.bindings.BoundingBoxTypeBinding;
 import org.geotools.ows.bindings.UnitBinding;
@@ -74,6 +75,7 @@ public class OWSConfiguration extends Configuration {
         bindings.put(OWS.SectionsType ,new ComplexEMFBinding(Ows11Factory.eINSTANCE, OWS.SectionsType));
         bindings.put(OWS.AcceptFormatsType,new ComplexEMFBinding(Ows11Factory.eINSTANCE, OWS.AcceptFormatsType));
         bindings.put(OWS.BoundingBoxType, new BoundingBoxTypeBinding(Ows11Factory.eINSTANCE, OWS.BoundingBoxType));
+        bindings.put(OWS.WGS84BoundingBoxType, new ComplexEMFBinding(Ows11Factory.eINSTANCE, OWS.WGS84BoundingBoxType, WGS84BoundingBoxType.class));
         
         bindings.put(OWS.CodeType,new SimpleContentComplexEMFBinding(Ows11Factory.eINSTANCE, OWS.CodeType));
         bindings.put(OWS.ContactType,new ComplexEMFBinding(Ows11Factory.eINSTANCE, OWS.ContactType));
