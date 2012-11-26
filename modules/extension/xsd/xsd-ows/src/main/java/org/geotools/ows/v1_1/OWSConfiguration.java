@@ -104,7 +104,8 @@ public class OWSConfiguration extends Configuration {
         bindings.put(OWS.UOM, new UnitBinding());
         bindings.put(OWS.ValueType, new SimpleContentComplexEMFBinding(Ows11Factory.eINSTANCE, OWS.ValueType));
         
-        bindings.put(OWS.UnNamedDomainType,new ComplexEMFBinding(Ows11Factory.eINSTANCE, OWS.UnNamedDomainType));
+        bindings.put(OWS.UnNamedDomainType, new ComplexEMFBinding(Ows11Factory.eINSTANCE, OWS.UnNamedDomainType));
+        bindings.put(OWS.ReferenceGroupType, new ComplexEMFBinding(Ows11Factory.eINSTANCE, OWS.ReferenceGroupType));
     }
     
     protected void configureContext(MutablePicoContainer container) {
