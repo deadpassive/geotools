@@ -3,6 +3,7 @@ package org.geotools.wcs;
 import java.util.Map;
 
 import javax.xml.namespace.QName;
+import net.opengis.wcs10.WCSCapabilitiesType;
 
 import net.opengis.wcs10.Wcs10Factory;
 
@@ -12,6 +13,7 @@ import org.geotools.wcs.bindings.AbstractDescriptionBaseTypeBinding;
 import org.geotools.wcs.bindings.AbstractDescriptionTypeBinding;
 import org.geotools.wcs.bindings.AxisDescriptionTypeBinding;
 import org.geotools.wcs.bindings.CapabilitiesSectionTypeBinding;
+import org.geotools.wcs.bindings.DCPTypeType_HTTPBinding;
 import org.geotools.wcs.bindings.InterpolationMethodTypeBinding;
 import org.geotools.wcs.bindings.LonLatEnvelopeBaseTypeBinding;
 import org.geotools.wcs.bindings.LonLatEnvelopeTypeBinding;
@@ -82,15 +84,18 @@ public class WCSConfiguration extends Configuration {
         bindings.put(WCS.InterpolationMethodType, new InterpolationMethodTypeBinding());
 
         register(bindings, wcsFactory, WCS.DCPTypeType);
-        register(bindings, wcsFactory, WCS.DCPTypeType_HTTP);
+//        register(bindings, wcsFactory, WCS.DCPTypeType_HTTP);
+        bindings.put(WCS.DCPTypeType_HTTP, new DCPTypeType_HTTPBinding());
 
         bindings.put(WCS.CapabilitiesSectionType, new CapabilitiesSectionTypeBinding());
-//        register(bindings, wcsFactory, WCS.WCS_CapabilitiesType);
+        register(bindings, wcsFactory, WCS.WCS_CapabilitiesType, WCSCapabilitiesType.class);
+        register(bindings, wcsFactory, WCS.ServiceType);
+        register(bindings, wcsFactory, WCS.MetadataLinkType);
 //        register(bindings, wcsFactory, WCS.WCSCapabilityType);
 //        register(bindings, wcsFactory, WCS.WCSCapabilityType_Exception);
 //        register(bindings, wcsFactory, WCS.WCSCapabilityType_Request);
 //        register(bindings, wcsFactory, WCS.WCSCapabilityType_VendorSpecificCapabilities);
-
+        
         bindings.put(WCS.LonLatEnvelopeBaseType, new LonLatEnvelopeBaseTypeBinding());
         bindings.put(WCS.LonLatEnvelopeType, new LonLatEnvelopeTypeBinding());
         bindings.put(WCS.TimePeriodType, new TimePeriodTypeBinding());
@@ -99,6 +104,10 @@ public class WCSConfiguration extends Configuration {
     
     private void register(Map bindings, EFactory factory, QName qname) {
         bindings.put(qname, new ComplexEMFBinding(factory, qname));
+    }
+    
+    private void register(Map bindings, EFactory factory, QName qname, Class clazz) {
+        bindings.put(qname, new ComplexEMFBinding(factory, qname, clazz));
     }
 
     protected void configureContext(MutablePicoContainer container) {

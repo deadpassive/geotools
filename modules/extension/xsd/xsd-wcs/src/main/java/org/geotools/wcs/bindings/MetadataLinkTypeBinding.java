@@ -6,6 +6,8 @@ import org.geotools.xml.*;
 
 
 import javax.xml.namespace.QName;
+import net.opengis.wcs10.MetadataLinkType;
+import net.opengis.wcs10.Wcs10Factory;
 
 /**
  * Binding object for the type http://www.opengis.net/wcs:MetadataLinkType.
@@ -24,7 +26,7 @@ import javax.xml.namespace.QName;
  *                      &lt;restriction base="NMTOKEN"&gt;
  *                          &lt;enumeration value="TC211"&gt;
  *                              &lt;annotation&gt;
- *                                  &lt;documentation&gt;This metadata uses a profile of ISO TC211’s Geospatial Metadata Standard 19115. &lt;/documentation&gt;
+ *                                  &lt;documentation&gt;This metadata uses a profile of ISO TC211ï¿½s Geospatial Metadata Standard 19115. &lt;/documentation&gt;
  *                              &lt;/annotation&gt;
  *                          &lt;/enumeration&gt;
  *                          &lt;enumeration value="FGDC"&gt;
@@ -69,7 +71,7 @@ public class MetadataLinkTypeBinding extends AbstractComplexBinding {
 	 * @generated modifiable
 	 */	
 	public Class getType() {
-		return null;
+		return MetadataLinkType.class;
 	}
 	
 	/**
@@ -81,6 +83,8 @@ public class MetadataLinkTypeBinding extends AbstractComplexBinding {
 	public Object parse(ElementInstance instance, Node node, Object value) 
 		throws Exception {
 		
+            Wcs10Factory factory = Wcs10Factory.eINSTANCE;
+            MetadataLinkType metadataLink = factory.createMetadataLinkType();
 		//TODO: implement and remove call to super
 		return super.parse(instance,node,value);
 	}
